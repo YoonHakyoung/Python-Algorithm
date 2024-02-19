@@ -4,7 +4,6 @@ for t in range(T):
     answer2 = 1
     W, E = map(int, input().split())
     for i in range(W):
-        #print(E)
         answer1 *= E
         E -= 1
         answer2 *= (i+1)

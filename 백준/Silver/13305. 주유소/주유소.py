@@ -1,15 +1,23 @@
-N = int(input()) # 4
-Len = list(map(int, input().split())) # 2 3 1
-Prc = list(map(int, input().split())) # 5 2 4 1
-answer = Prc[0] * Len[0] # 출발할 때 
+def main():
+    city = int(input())
+    distance = list(map(int, input().split()))
+    gas_price = list(map(int, input().split()))
 
-for i in range(1, N-1):
-    if Prc[i] == min(Prc): # 최저가 
-        answer += Prc[i] * sum(Len[i:])
-        break
-    if Prc[i] < Prc[i-1]:
-        answer += Prc[i] * Len[i] # 전 마을보다 가격 더 싸면 
-    else:
-        answer += Prc[i-1] * Len[i]
+    result = 0
+    min_gas_price = gas_price[0]
 
-print(answer)
+    for i in range(city - 1):
+        if i == 0:
+            result = distance[0] * min_gas_price
+            continue
+
+        if gas_price[i] < min_gas_price:
+            min_gas_price = gas_price[i]
+
+        result += distance[i] * min_gas_price
+
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
